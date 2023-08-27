@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple CAPTCHA Example</title>
+    <link href="style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <h1 class="heading">Captcha Generator</h1>
+    <div class="container">
+        <form onsubmit="submitHandle()">
+            <div class="input_value">
+                <label>User Name</label><br/>
+                <input type="text" placeholder="Enter Your UserName" required />
+            </div>
+            <div class="input_value">
+                <label>Email</label><br/>
+                <input type="email" placeholder="Enter Your Email" required />
+            </div>
+            <div class="input_value">
+                <label>Password</label><br/>
+                <input type="password" placeholder="Enter Your Password" required />
+            </div>
+            <input type="text" value="" id="captch-exmple" disabled>
+            <br />
+            <input type="text" id="enter-captch" placeholder="Enter Above Captcha"><br/>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+
+    <script>
+
+        const exm_cap = document.getElementById("captch-exmple")
+        const enter_captch = document.getElementById("enter-captch")
+
+        exm_cap.value = generateRandomCaptcha();
+
+        function generateRandomCaptcha() {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = Math.floor(Math.random() * characters.length);
+                captcha += characters.charAt(randomIndex);
+            }
+            return captcha;
+        }
+        
+
+        function submitHandle() {
+            if (enter_captch.value === exm_cap.value) {
+                alert("CAPTCHA verification successful!");
+            } else {
+                alert("CAPTCHA verification failed. Please try again.");
+            }
+        }
+
+
+        
+
+    </script>
+</body>
+
+</html>
+
+
+
+
